@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Billing Details</title>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4">Billing Details</h1>
+      <form th:action="@{/placeOrder}" method="post" th:object="${orderInput}">
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" th:field="*{fullName}" required>
+        </div>
+        <div class="mb-3">
+          <label for="fullAddress" class="form-label">Full Address</label>
+          <input type="text" class="form-control" id="fullAddress" th:field="*{fullAddress}" required>
+        </div>
+        <div class="mb-3">
+          <label for="contactNumber" class="form-label">Contact Number</label>
+          <input type="tel" class="form-control" id="contactNumber" th:field="*{contactNumber}" required>
+        </div>
+        <div th:each="productQuantity, index : *{orderProductQuantityList}">
+          <input type="hidden" th:field="*{orderProductQuantityList[__${index.index}__].productId}" />
+          <input type="number" class="form-control" th:field="*{orderProductQuantityList[__${index.index}__].quantity}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
