@@ -28,5 +28,10 @@ public class CartController {
         model.addAttribute("cartDetails", cartDetails);
         return "cartdetails"; // The name of your Thymeleaf template
     }
+    @GetMapping("/delete_cart/{cartId}")
+    public String deleteCartProduct(@PathVariable Long cartId){
+        cartService.deleteCartByid(cartId);
+        return "redirect:/getCartdetails";
+    }
 
 }

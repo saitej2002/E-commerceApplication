@@ -46,4 +46,9 @@ public class CartServiceImpl implements CartService {
         User user = userRepository.findByEmail(username);
         return cartRepository.findByUser(user);
     }
+
+    @Override
+    public void deleteCartByid(Long cartId) {
+        cartRepository.deleteById(cartId);
+    }
 }

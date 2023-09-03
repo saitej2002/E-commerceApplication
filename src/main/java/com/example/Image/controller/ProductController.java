@@ -11,10 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -43,7 +40,6 @@ public class ProductController {
         model.addAttribute("loggedInUserName", loggedInUserName);
         return "productList";
     }
-
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
         model.addAttribute("product", new Product());
@@ -63,7 +59,7 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/products";
     }
-    @GetMapping("registration")
+    @GetMapping("cregistration")
     public String showRegistrationForm(Model model){
         User user = new User();
         model.addAttribute("user", user);

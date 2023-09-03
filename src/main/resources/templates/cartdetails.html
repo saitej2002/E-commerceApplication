@@ -8,6 +8,22 @@
   <title>Cart Details</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Product List</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/products}">Go back</a>
+        </li>
+      </ul>
+      <span class="navbar-text" th:text="${loggedInUserName}"></span>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <h1 class="text-center">Cart Details</h1>
 
@@ -19,6 +35,7 @@
       <th>Product Description</th>
       <th>Price</th>
       <th>Image</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -30,7 +47,11 @@
       <td>
         <img alt="" th:src="@{/images/__${cart.product.imageName}__}" width="100px" height="100px" />
       </td>
+      <td>
+        <a th:href = "@{/delete_cart/{id}(id = ${cart.cartId})}" class = "btn btn-danger">Delete</a>
+      </td>
     </tr>
+
     </tbody>
   </table>
 </div>
